@@ -105,4 +105,4 @@ While building this project, I learned:
 
 ## 👨‍💻 Author
 
-Made with by Jatin Prajapati
+Made by Jatin Prajapati
