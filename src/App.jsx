@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { CiBoxList } from "react-icons/ci";
@@ -13,6 +13,7 @@ function App() {
   const [editID, setEditID] = useState(null)
   const [editText, setEditText] = useState("")
   const [active, setActive] = useState("pending")
+  const editRef = useRef()
 
   useEffect(() => {
     let Data = localStorage.getItem("tasks")
@@ -89,22 +90,23 @@ function App() {
 
   return (
     <>
-      <div className="p-0 m-0 bg-gray-100 w-screen h-screen absolute">
+      <div className="min-h-screen w-full bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 py-5">
 
-        <nav className='h-11 rounded-2xl bg-gray-700 w-2/4 mx-auto relative top-2'>
-          <div className=" logo text-white flex items-end justify-center gap-5 cursor-pointer hover:font-bold transition-all">
-            <span className='font-bold text-3xl'>iTask</span>
-            <span className='italic '>- Plan Your Day, Own Your Life</span>
+        <nav className='w-2/4 mx-auto rounded-2xl bg-white shadow-lg border border-gray-200 py-3'>
+          <div className="flex items-end justify-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105">
+            <span className='text-3xl font-bold text-indigo-600'>iTask</span>
+            <span className='italic text-gray-500 '>- Plan Your Day, Own Your Life</span>
           </div>
         </nav>
-        <div className="Container w-2/4 mx-auto my-5 bg-gray-500 p-5 rounded-2xl">
+        <div className="w-2/4 mx-auto mt-6 rounded-3xl bg-white p-6 shadow-xl border border-gray-200">
           <div className="mb-2 mx-2">
-            <p className="text-white text-xl font-semibold">Add Task</p>
+            <p className="text-2xl font-bold text-gray-800">Add Task</p>
           </div>
           <div className='mb-3'>
             <form className='flex gap-2'>
               <input
-                className='w-full px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
+                className='w-full rounded-xl border border-gray-300 bg-white px-4 py-1 text-gray-700 placeholder:text-gray-700 outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100'
+                // className='w-full px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
                 value={task}
                 placeholder='Enter Your Task'
                 onChange={handleChange}
@@ -115,42 +117,50 @@ function App() {
                 type='submit'
                 onClick={handleAdd}
                 disabled={task.length < 4}
-                className="cursor-pointer bg-gray-700 rounded-2xl px-5 py-1 text-white hover:font-bold "
+              className="rounded-xl bg-indigo-600 px-6 py-1 font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg disabled:cursor-not-allowed disabled:bg-indigo-300"
+              // className="cursor-pointer bg-gray-700 rounded-2xl px-5 py-1 text-white hover:font-bold "
               >
                 Add
               </button>
             </form>
           </div>
 
-          <div className="flex items-center gap-2">
-            <CiBoxList color='white' size={20} />
-            <font className=" text-white font-semibold">Your Tasks</font>
+          <div className="flex items-center gap-2 mt-5">
+            <CiBoxList color='#4f46e5' size={22} />
+            <font className="text-lg font-semibold text-gray-700">Your Tasks</font>
           </div>
 
           {/* Silde Button */}
-          <div className="relative flex my-2 w-72 p-1 bg-slate-800 rounded-2xl overflow-hidden">
+          <div
+            className="relative my-4 flex w-72 rounded-3xl bg-gray-200 p-1 shadow-inner"
+          //  className="relative flex my-2 w-72 p-1 bg-slate-800 rounded-2xl overflow-hidden"
+          >
 
-            <div className={` absolute top-1 left-1 w-[48%] h-[85%] rounded-xl  transition-transform duration-300 ease-in-out ${active === "complete" ? "translate-x-full  bg-green-900" : "bg-red-900"}`} />
+            <div
+              className={`absolute left-1 top-1 h-[85%] w-[48%] rounded-3xl transition-all duration-300 ${active === "complete" ? "translate-x-full bg-green-600" : "bg-red-600"}`}
+              // className={` absolute top-1 left-1 w-[48%] h-[85%] rounded-xl  transition-transform duration-300 ease-in-out ${active === "complete" ? "translate-x-full  bg-green-900" : "bg-red-900"}`}
+            />
 
 
 
             <button
               onClick={showPending}
-              className={`relative z-10 w-1/2 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-black"}`}
+              className={`relative z-10 w-1/2 rounded-3xl py-1 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-gray-600"}`}
+              // className={`relative z-10 w-1/2 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-black"}`}
             >
               pending
             </button>
             <button
               onClick={showComplete}
-              className={`relative z-10 w-1/2 py-1 font-semibold transition-colors duration-300 ${active === "complete" ? "text-white" : "text-black"}`}
+              className={`relative z-10 w-1/2 py-1 rounded-3xl  font-semibold transition-colors duration-300 ${active === "complete" ? "text-white" : "text-black"}`}
             >
               completed
             </button>
           </div>
 
-          <hr className="" />
+          <hr className="border-gray-300 my-3" />
 
-          {tasks.length === 0 ? (<div className='m-5'>No Tasks to Dispay</div>) : (<div className="Tasklist overflow-y-scroll h-100">
+          {tasks.length === 0 ? (<div className='mt-10 text-center text-lg font-medium text-gray-400'>No Tasks to Dispay</div>) : (<div className="h-96 overflow-y-auto rounded-xl">
             {tasks
               .filter(item =>
                 item && (changestatus ? item.isCompleted : !item.isCompleted)
@@ -159,7 +169,10 @@ function App() {
                 return (
                   <>
 
-                    <div className=" min-h-11 px-2 Task flex items-center justify-between gap-3" key={item.id}>
+                    <div 
+                    className="my-3 flex items-center justify-between rounded-xl border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md" key={item.id}
+                    // className=" min-h-11 px-2 Task flex items-center justify-between gap-3" key={item.id}
+                    >
 
                       <div className='right flex gap-3'>
                         <div>
@@ -177,10 +190,12 @@ function App() {
                             onChange={(e) => {
                               setEditText(e.target.value)
                             }}
-                            className='w-100 px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
+                            autoFocus
+                            className='w-96 rounded-xl border border-gray-300 px-4 py-1 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100'
+                            // className='w-100 px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
                           />
                         ) : (
-                          <div className={item.isCompleted ? "line-through" : ""}>
+                          <div className={item.isCompleted ? "text-gray-400 line-through" : "text-gray-700 font-medium"}>
                             {item.task}
                           </div>
                         )}
@@ -190,27 +205,29 @@ function App() {
                         {editID === item.id ? (
                           <button
                             onClick={handleUpdate}
-                            className="cursor-pointer bg-gray-700 rounded-2xl  px-5 mx-1 text-white hover:font-bold "
+                            className="rounded-lg bg-green-500 px-5 py-1 font-medium text-white transition-all hover:bg-green-600"
+                            // className="cursor-pointer bg-gray-700 rounded-2xl  px-5 mx-1 text-white hover:font-bold "
                           >
                             Save
                           </button>
                         ) : (
                           <button
                             onClick={(e) => handleEdit(item.id, item.task)}
-                            className="cursor-pointer bg-gray-700 p-2 py-1 text-sm rounded-md mx-1 text-white hover:font-bold "
+                            className="rounded-lg text-blue-500 px-2 py-1 transition-all hover:text-blue-600 hover:scale-105"
+                            // className="cursor-pointer bg-gray-700 p-2 py-1 text-sm rounded-md mx-1 text-white hover:font-bold "
                           >
-                            <FaEdit />
+                            <FaEdit className=''/>
                           </button>
                         )}
                         <button
                           onClick={(e) => handleDelete(e, item.id)}
-                          className="cursor-pointer bg-gray-700 p-2 py-1 text-sm rounded-md mx-1 text-white hover:font-bold "
+                          className="rounded-lg text-red-500 transition-all hover:text-red-600 hover:scale-105"
                         >
                           <AiFillDelete />
                         </button>
                       </div>
                     </div>
-                    <hr className="" />
+                  
                   </>
                 )
               })}
