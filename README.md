@@ -55,13 +55,13 @@ screenshots/
 Clone the repository:
 
 ```bash
-git clone YOUR_GITHUB_REPO_LINK
+git clone https://github.com/jatinprajapati1542/iTask-Manager.git
 ```
 
 Go to project folder:
 
 ```bash
-cd itask
+cd Todo_list
 ```
 
 Install dependencies:
