@@ -171,7 +171,7 @@ function App() {
                   <>
 
                     <div
-                      className="my-3 flex items-center justify-between rounded-xl border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md" key={item.id}
+                      className="my-3 flex items-center justify-between rounded-xl border-gray-200 bg-gray-50 p-2 transition-all duration-300 hover:bg-white hover:shadow-md" key={item.id}
                     // className=" min-h-11 px-2 Task flex items-center justify-between gap-3" key={item.id}
                     >
 
@@ -192,7 +192,7 @@ function App() {
                               setEditText(e.target.value)
                             }}
                             autoFocus
-                            className='w-96 rounded-xl border border-gray-300 px-4 py-1 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100'
+                            className='w-full rounded-xl border border-gray-300 px-4 py-1 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100'
                           // className='w-100 px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
                           />
                         ) : (
@@ -206,7 +206,7 @@ function App() {
                         {editID === item.id ? (
                           <button
                             onClick={handleUpdate}
-                            className="rounded-lg bg-green-500 px-5 py-1 font-medium text-white transition-all hover:bg-green-600"
+                            className="rounded-lg bg-green-500 px-3 py-1 font-medium text-white transition-all hover:bg-green-600"
                           // className="cursor-pointer bg-gray-700 rounded-2xl  px-5 mx-1 text-white hover:font-bold "
                           >
                             Save
