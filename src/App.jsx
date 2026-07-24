@@ -90,15 +90,16 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen w-full bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 py-5">
+      <div className="min-h-screen w-full bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 py-4 px-3 sm:px-5">
 
-        <nav className='w-2/4 mx-auto rounded-2xl bg-white shadow-lg border border-gray-200 py-3'>
+        <nav className="mx-auto w-full max-w-4xl rounded-2xl border border-gray-200 bg-white py-3 shadow-lg">
+          {/* <nav className='w-2/4 mx-auto rounded-2xl bg-white shadow-lg border border-gray-200 py-3'> */}
           <div className="flex items-end justify-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105">
             <span className='text-3xl font-bold text-indigo-600'>iTask</span>
             <span className='italic text-gray-500 '>- Plan Your Day, Own Your Life</span>
           </div>
         </nav>
-        <div className="w-2/4 mx-auto mt-6 rounded-3xl bg-white p-6 shadow-xl border border-gray-200">
+        <div className="w-full max-w-4xl mx-auto mt-6 rounded-3xl bg-white p-6 shadow-xl border border-gray-200">
           <div className="mb-2 mx-2">
             <p className="text-2xl font-bold text-gray-800">Add Task</p>
           </div>
@@ -117,7 +118,7 @@ function App() {
                 type='submit'
                 onClick={handleAdd}
                 disabled={task.length < 4}
-              className="rounded-xl bg-indigo-600 px-6 py-1 font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg disabled:cursor-not-allowed disabled:bg-indigo-300"
+                className="rounded-xl bg-indigo-600 px-6 py-1 font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg disabled:cursor-not-allowed disabled:bg-indigo-300"
               // className="cursor-pointer bg-gray-700 rounded-2xl px-5 py-1 text-white hover:font-bold "
               >
                 Add
@@ -138,7 +139,7 @@ function App() {
 
             <div
               className={`absolute left-1 top-1 h-[85%] w-[48%] rounded-3xl transition-all duration-300 ${active === "complete" ? "translate-x-full bg-green-600" : "bg-red-600"}`}
-              // className={` absolute top-1 left-1 w-[48%] h-[85%] rounded-xl  transition-transform duration-300 ease-in-out ${active === "complete" ? "translate-x-full  bg-green-900" : "bg-red-900"}`}
+            // className={` absolute top-1 left-1 w-[48%] h-[85%] rounded-xl  transition-transform duration-300 ease-in-out ${active === "complete" ? "translate-x-full  bg-green-900" : "bg-red-900"}`}
             />
 
 
@@ -146,7 +147,7 @@ function App() {
             <button
               onClick={showPending}
               className={`relative z-10 w-1/2 rounded-3xl py-1 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-gray-600"}`}
-              // className={`relative z-10 w-1/2 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-black"}`}
+            // className={`relative z-10 w-1/2 font-semibold transition-colors duration-300 ${active === "pending" ? "text-white" : "text-black"}`}
             >
               pending
             </button>
@@ -169,8 +170,8 @@ function App() {
                 return (
                   <>
 
-                    <div 
-                    className="my-3 flex items-center justify-between rounded-xl border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md" key={item.id}
+                    <div
+                      className="my-3 flex items-center justify-between rounded-xl border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md" key={item.id}
                     // className=" min-h-11 px-2 Task flex items-center justify-between gap-3" key={item.id}
                     >
 
@@ -192,7 +193,7 @@ function App() {
                             }}
                             autoFocus
                             className='w-96 rounded-xl border border-gray-300 px-4 py-1 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100'
-                            // className='w-100 px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
+                          // className='w-100 px-4 rounded-2xl border border-gray-300 bg-gray-200 text-gray-800 placeholder-gray-400 shadow-sm outline-none focus:ring-2 focus:ring-gray-400 focus:border-blue-300 transition duration-200'
                           />
                         ) : (
                           <div className={item.isCompleted ? "text-gray-400 line-through" : "text-gray-700 font-medium"}>
@@ -206,7 +207,7 @@ function App() {
                           <button
                             onClick={handleUpdate}
                             className="rounded-lg bg-green-500 px-5 py-1 font-medium text-white transition-all hover:bg-green-600"
-                            // className="cursor-pointer bg-gray-700 rounded-2xl  px-5 mx-1 text-white hover:font-bold "
+                          // className="cursor-pointer bg-gray-700 rounded-2xl  px-5 mx-1 text-white hover:font-bold "
                           >
                             Save
                           </button>
@@ -214,9 +215,9 @@ function App() {
                           <button
                             onClick={(e) => handleEdit(item.id, item.task)}
                             className="rounded-lg text-blue-500 px-2 py-1 transition-all hover:text-blue-600 hover:scale-105"
-                            // className="cursor-pointer bg-gray-700 p-2 py-1 text-sm rounded-md mx-1 text-white hover:font-bold "
+                          // className="cursor-pointer bg-gray-700 p-2 py-1 text-sm rounded-md mx-1 text-white hover:font-bold "
                           >
-                            <FaEdit className=''/>
+                            <FaEdit className='' />
                           </button>
                         )}
                         <button
@@ -227,7 +228,7 @@ function App() {
                         </button>
                       </div>
                     </div>
-                  
+
                   </>
                 )
               })}
